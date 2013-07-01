@@ -3,6 +3,14 @@ Description
 
 _Narno_Mailjet_ Magento module.
 
+_Work in progress..._
+
+
+Screenshot
+----------
+
+![Narno_Mailjet Configuration](https://raw.github.com/Narno/Narno_Mailjet/master/doc/screenshots/Narno_Mailjet_Admin.png "Narno_Mailjet Configuration")
+
 
 License
 ----------
