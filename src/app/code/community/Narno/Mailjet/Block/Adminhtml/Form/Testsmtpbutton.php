@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Narno_Mailjet_Block_Adminhtml_Form_Testbutton
+class Narno_Mailjet_Block_Adminhtml_Form_Testsmtpbutton
     extends Mage_Adminhtml_Block_System_Config_Form_Field
 {
     /*
@@ -16,7 +16,7 @@ class Narno_Mailjet_Block_Adminhtml_Form_Testbutton
     protected function _construct()
     {
         parent::_construct();
-        $this->setTemplate('system/config/form/button.phtml');
+        $this->setTemplate('system/config/form/smtpbutton.phtml');
     }
 
     /**
@@ -49,9 +49,9 @@ class Narno_Mailjet_Block_Adminhtml_Form_Testbutton
     {
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setData(array(
-            'id'        => 'Narno_Mailjet_button',
+            'id'        => 'narno_mailjet_smtp_button',
             'label'     => $this->helper('adminhtml')->__('Sending test'),
-            'onclick'   => 'javascript:test(); return false;'
+            'onclick'   => 'javascript:smtp_test(); return false;'
         ));
 
         return $button->toHtml();

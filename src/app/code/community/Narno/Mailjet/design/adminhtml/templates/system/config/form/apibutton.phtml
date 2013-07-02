@@ -9,21 +9,26 @@
 ?>
 <script type="text/javascript">
     //<![CDATA[
-    function showMessage(txt, type) {
+    function showApiTestMessage(txt, type) {
         var html = '<ul class="messages"><li class="'+type+'-msg"><ul><li>' + txt + '</li></ul></li></ul>';
-        $('test-messages').update(html);
+        $('api-test-messages').update(html);
     }
-    function test() {
+    function api_test() {
         new Ajax.Request('<?php echo $this->getAjaxTestUrl() ?>', {
             method: 'get',
+            parameters: {
+                login: $('mailjet_api_key').value,
+                password: $('mailjet_api_secret').value,
+                idmlist: $('mailjet_api_listid').value
+            },
             onSuccess: function(transport){
                 if (transport.responseJSON){
                     var json = transport.responseJSON;
-                    showMessage(json.message, json.status);
+                    showApiTestMessage(json.message, json.status);
                 }
             }
         });
     }
     //]]>
 </script>
-<?php echo $this->getButtonHtml() ?><div id="test-messages"></div>
+<?php echo $this->getButtonHtml() ?><div id="api-test-messages"></div>
