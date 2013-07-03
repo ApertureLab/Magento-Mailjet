@@ -36,11 +36,6 @@ class Narno_Mailjet_Model_Config
         return self::getSettings('debug');
     }
 
-    public static function isDebugApi()
-    {
-        return self::getSettings('debug_api');
-    }
-
     /**
      * Return authentication config $key item from core_config_data
      *
@@ -64,18 +59,16 @@ class Narno_Mailjet_Model_Config
     }
 
     /**
-     * Check whether Mailjet API credentials are available
-     *
-     * @return bool
+     * Check if API is enabled
+     * 
+     * @return boolean
      */
-    public static function isApiAvailabe()
+    public static function isApiEnabled()
     {
-        if ($this->getAuthConfig('apikey')
-            && $this->getAuthConfig('secretkey')
-            && $this->getApiConfig('listid')
-        ) {
+        if (self::getApiConfig('enabled') == '1') {
             return true;
         }
+        return false;
     }
 
     /**

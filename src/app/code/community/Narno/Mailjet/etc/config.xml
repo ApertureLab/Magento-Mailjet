@@ -16,7 +16,6 @@
     </modules>
     <settings>
         <debug>1</debug>
-        <debug_api>0</debug_api>
     </settings>
     <crontab>
         <jobs>

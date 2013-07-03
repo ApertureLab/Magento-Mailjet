@@ -12,18 +12,74 @@
  */
 class Narno_Mailjet_Model_Api extends Varien_Object
 {
-    protected function _getApi($apikey='', $secretkey='')
+    protected $_api = null;
+
+    /**
+     * Return Zend_Service_Mailjet object
+     * 
+     * @param string $apikey
+     * @param string $secretkey
+     * @return \Zend_Service_Mailjet
+     */
+    protected function _getApi($apikey='', $secretkey='', $force=false)
     {
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+
         if (empty($apikey) || empty($secretkey)) {
-            $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
-            if (empty($apikey)) {
-                $apikey = $config->getAuthConfig('apikey');
-            }
-            if (empty($secretkey)) {
-                $secretkey = $config->getAuthConfig('secretkey');
+            $apikey    = $config->getAuthConfig('apikey');
+            $secretkey = $config->getAuthConfig('secretkey');
+        }
+
+        if (is_null($this->_api) || $force === true) {
+            try {
+                // use proxy?
+                if ($config->isUseProxy()) {
+                    if ($config->getApiConfig('proxy_host') && $config->getApiConfig('proxy_port')) {
+                        $proxyConfig = array(
+                            'proxy_host' => $config->getApiConfig('proxy_host'),
+                            'proxy_port' => $config->getApiConfig('proxy_port'),
+                        );
+                        $httpAdapter = new Zend_Http_Client_Adapter_Proxy();
+                        $httpAdapter->setConfig($proxyConfig);
+                        $httpClient = new Zend_Http_Client();
+                        $httpClient->setAdapter($httpAdapter);
+                        $this->_api = new Zend_Service_Mailjet($apikey, $secretkey, $httpClient);
+                    }
+                }
+                else {
+                    $this->_api = new Zend_Service_Mailjet($apikey, $secretkey);
+                }
+            } catch (Exception $e) {
+                Mage::logException($e);
             }
         }
 
-        return new Zend_Service_Mailjet($apikey, $secretkey);
+        return $this->_api;
+    }
+
+    /**
+     * API connection test
+     * 
+     * @param string $apikey API key
+     * @param string $secretkey Secret key
+     * @param integer $list List ID
+     * @return boolean
+     */
+    public function testConnection($apikey, $secretkey, $list)
+    {
+        try {
+            $response = $this->_getApi($apikey, $secretkey)
+                ->lists->email(array(
+                    'id' => $list
+                ));
+            if ($response->status == 'OK') {
+                return true;
+            }
+            return false;
+        } catch (Exception $e) {
+            Mage::logException($e);
+            return false;
+        }
+        return false;
     }
 }

@@ -17,9 +17,9 @@
         new Ajax.Request('<?php echo $this->getAjaxTestUrl() ?>', {
             method: 'get',
             parameters: {
-                login: $('mailjet_api_key').value,
-                password: $('mailjet_api_secret').value,
-                idmlist: $('mailjet_api_listid').value
+                apikey: $('mailjet_authentication_apikey').value,
+                secretkey: $('mailjet_authentication_secretkey').value,
+                listid: $('mailjet_api_listid').value
             },
             onSuccess: function(transport){
                 if (transport.responseJSON){

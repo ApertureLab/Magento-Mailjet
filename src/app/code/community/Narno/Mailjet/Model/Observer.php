@@ -21,6 +21,12 @@ class Narno_Mailjet_Model_Observer
      */
     public function beforeBlockToHtml(Varien_Event_Observer $observer)
     {
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+
+        if ($config->isApiEnabled() === false) {
+            return $this;
+        }
+
         $grid = $observer->getBlock();
 
         /**
@@ -37,6 +43,8 @@ class Narno_Mailjet_Model_Observer
                 'sortable'  => false,
             ), 'store');
         }
+
+        return $this;
     }
 
     /**
@@ -49,6 +57,12 @@ class Narno_Mailjet_Model_Observer
     public function updateCustomer(Varien_Event_Observer $observer)
     {
         Mage::helper('narno_mailjet')->logDebug('Observer: ' . $observer->getEvent()->getName()); // debug
+        
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+
+        if ($config->isApiEnabled() === false) {
+            return $this;
+        }
 
         $customer = $observer->getEvent()->getCustomer();
         $mjLists = Mage::getModel('narno_mailjet/api_lists');
@@ -56,11 +70,11 @@ class Narno_Mailjet_Model_Observer
 
         // subscribe
         if (Mage::getModel('newsletter/subscriber')->loadByCustomer($customer)->isSubscribed()) {
-            $mjLists->subscribe($customer->getEmail());
+            $mjLists->subscribe($customer->getEmail(), $config->getApiConfig('listid'));
         }
         // unsubscribe
         else {
-            $mjLists->unsubscribe($customer->getEmail());
+            $mjLists->unsubscribe($customer->getEmail(), $config->getApiConfig('listid'));
         }
 
         return $this;
@@ -77,12 +91,18 @@ class Narno_Mailjet_Model_Observer
     {
         Mage::helper('narno_mailjet')->logDebug('Observer: ' . $observer->getEvent()->getName()); // debug
 
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+
+        if ($config->isApiEnabled() === false) {
+            return $this;
+        }
+
         $customer   = $observer->getEvent()->getCustomer();
         $mjLists = Mage::getModel('narno_mailjet/api_lists');
         /* @var $mjLists Narno_Mailjet_Model_Api_Lists */
         
         // unsubscribe
-        $mjLists->unsubscribe($customer->getEmail());
+        $mjLists->unsubscribe($customer->getEmail(), $config->getApiConfig('listid'));
 
         return $this;
     }
@@ -119,6 +139,12 @@ class Narno_Mailjet_Model_Observer
     public function updateSubscriber(Varien_Event_Observer $observer)
     {
         Mage::helper('narno_mailjet')->logDebug('Observer: ' . $observer->getEvent()->getName()); // debug
+        
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+
+        if ($config->isApiEnabled() === false) {
+            return $this;
+        }
 
         $subscriber = $observer->getEvent()->getSubscriber();
         $mjLists = Mage::getModel('narno_mailjet/api_lists');
@@ -128,17 +154,17 @@ class Narno_Mailjet_Model_Observer
         if (!$subscriber->getCustomerId()) {
             // subscribe
             if ($subscriber->getSubscriberStatus() == '1') {
-                $mjLists->subscribe($subscriber->getSubscriberEmail());
+                $mjLists->subscribe($subscriber->getSubscriberEmail(), $config->getApiConfig('listid'));
             }
             // unsubscribe
             else {
-                $mjLists->unsubscribe($subscriber->getSubscriberEmail());
+                $mjLists->unsubscribe($subscriber->getSubscriberEmail(), $config->getApiConfig('listid'));
             }
         }
         // customer
         else {
             if ($subscriber->getSubscriberStatus() != '1') {
-                $mjLists->unsubscribe($subscriber->getEmail());
+                $mjLists->unsubscribe($subscriber->getEmail(), $config->getApiConfig('listid'));
             }
         }
 
@@ -156,17 +182,23 @@ class Narno_Mailjet_Model_Observer
     {
         Mage::helper('narno_mailjet')->logDebug('Observer: ' . $observer->getEvent()->getName()); // debug
 
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+
+        if ($config->isApiEnabled() === false) {
+            return $this;
+        }
+
         $subscriber = $observer->getEvent()->getSubscriber();
         $mjLists = Mage::getModel('narno_mailjet/api_lists');
         /* @var $mjLists Narno_Mailjet_Model_Api_Lists */
 
         // guest
         if (!$subscriber->getCustomerId()) {
-            $mjLists->unsubscribe($subscriber->getSubscriberEmail());
+            $mjLists->unsubscribe($subscriber->getSubscriberEmail(), $config->getApiConfig('listid'));
         }
         // customer
         else {
-            $mjLists->unsubscribe($subscriber->getEmail());
+            $mjLists->unsubscribe($subscriber->getEmail(), $config->getApiConfig('listid'));
         }
 
         return $this;
@@ -181,6 +213,12 @@ class Narno_Mailjet_Model_Observer
      */
     public function scheduledActions($schedule)
     {
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+
+        if ($config->isApiEnabled() === false) {
+            return $this;
+        }
+        
         $date = Mage::app()->getLocale()->date(null, null, null, false);
         Mage::log('run at ' . $date->toString('yyyy-MM-dd HH:mm:ss'), Zend_Log::INFO, 'cron.mailjet.log');
 

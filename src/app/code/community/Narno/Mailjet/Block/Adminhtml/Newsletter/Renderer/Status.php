@@ -10,26 +10,26 @@
 /**
  * Narno Mailjet Adminhtml Block status render
  */
-class Narno_Mailjet_Block_Adminhtml_Newsletter_Renderer_Status extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
+class Narno_Mailjet_Block_Adminhtml_Newsletter_Renderer_Status
+    extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
 {
     public function render(Varien_Object $row)
     {
-        $status = Mage::getModel('narno_mailjet/api_lists')->getStatusByEmail($row->getSubscriberEmail());
-        switch ((string)$status) {
-            case Narno_Mailjet_Model_Api_Lists::STATUS_NOTEXIST:
-                $statusRenderer = Mage::helper('narno_mailjet')->__('Not exist');
-                break;
-            case Narno_Mailjet_Model_Api_Lists::STATUS_NOTSUBSCRIBED:
+        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config Narno_Mailjet_Model_Config */
+        $status = Mage::getModel('narno_mailjet/api_contact')
+            ->getStatus($row->getSubscriberEmail(), $config->getApiConfig('listid'));
+        switch ($status) {
+            case 1:
                 $statusRenderer = Mage::helper('narno_mailjet')->__('Not subscribed');
                 break;
-            case Narno_Mailjet_Model_Api_Lists::STATUS_SUBSCRIBED:
+            case 0:
                 $statusRenderer = Mage::helper('narno_mailjet')->__('Subscribed');
                 break;
             default:
                 $statusRenderer = Mage::helper('narno_mailjet')->__('Unknown');
                 break;
         }
-        
+
         return $statusRenderer;
     }
 }
