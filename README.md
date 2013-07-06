@@ -1,21 +1,28 @@
 Description
------------
+===========
 
 _Narno_Mailjet_ is a Magento module that integrate Mailjet services with your e-commerce website.
 
-Features:
+### Features:
 * Uses the Mailjet STMP instead of the local SMTP relay
 * Uses the Mailjet API to synchronyze Magento newsletter subscribers with a Mailjet contacts list
 
-Mailjet documentation: http://www.mailjet.com/docs
-
 _Work in progress..._
+
+Mailjet documentation: http://www.mailjet.com/docs
 
 
 Screenshot
 ----------
 
 ![Narno_Mailjet Configuration](https://raw.github.com/Narno/Narno_Mailjet/master/doc/screenshots/Narno_Mailjet_Admin.png "Narno_Mailjet Configuration")
+
+
+Dependencies
+------------
+
+* Mailjet account: http://www.mailjet.com
+* ZendService_Mailjet library: https://github.com/Narno/ZendService_Mailjet/tree/zf1.
 
 
 License
