@@ -40,15 +40,48 @@
         <models>
              <narno_mailjet>
                   <class>Narno_Mailjet_Model</class>
+                  <resourceModel>narno_mailjet_mysql4</resourceModel>
              </narno_mailjet>
+             <narno_mailjet_mysql4>
+                <class>Narno_Mailjet_Model_Mysql4</class>
+             </narno_mailjet_mysql4>
              <core>
                  <rewrite>
                      <email_template>Narno_Mailjet_Model_Email_Template</email_template>
                  </rewrite>
              </core>
         </models>
+        <resources>
+            <narno_mailjet_setup>
+                <setup>
+                    <module>Narno_Mailjet</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </narno_mailjet_setup>
+            <narno_mailjet_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </narno_mailjet_write>
+            <narno_mailjet_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </narno_mailjet_read>
+        </resources>
     </global>
     <frontend>
+        <routers>
+            <monkey>
+                <use>standard</use>
+                <args>
+                    <module>Narno_Mailjet</module>
+                    <frontName>mailjet</frontName>
+                </args>
+            </monkey>
+        </routers>
         <events>
             <!-- customer events -->
             <customer_save_commit_after>
