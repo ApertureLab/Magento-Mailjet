@@ -32,7 +32,7 @@ class Narno_Mailjet_Model_Api_Lists
             );
             Mage::helper('narno_mailjet')->logDebug(array('params' => $params)); // debug
             $response = $this->_getApi()->lists->addcontact($params);
-            Mage::helper('narno_mailjet')->logDebug('New ID: ' . $response->contact_id); // debug
+            Mage::helper('narno_mailjet')->logDebug('ID: ' . $response->contact_id); // debug
             return $response->contact_id;
         } catch (Zend_Http_Client_Exception $e) {
             Narno_Mailjet_Model_Logger::logException($e);

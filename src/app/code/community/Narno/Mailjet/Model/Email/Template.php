@@ -73,6 +73,7 @@ class Narno_Mailjet_Model_Email_Template extends Mage_Core_Model_Email_Template
         }
 
         $mail->addHeader ('X-Mailer', 'Magento_Narno_Mailjet', TRUE);
+        $mail->addHeader ('X-Mailjet-Campaign', str_replace('_email_template', '', $this->getTemplateId()), TRUE);
         $mail->setSubject('=?utf-8?B?' . base64_encode($this->getProcessedTemplateSubject($variables)) . '?=');
         $mail->setFrom($this->getSenderEmail(), $this->getSenderName());
 
@@ -82,6 +83,7 @@ class Narno_Mailjet_Model_Email_Template extends Mage_Core_Model_Email_Template
                 'template' => $this->getTemplateId(),
                 'subject'  => $this->getProcessedTemplateSubject($variables),
             ));
+            Mage::helper('narno_mailjet')->logDebug('Email sent: ' . print_r($mail, true)); // debug
             $mail->send();
             Mage::dispatchEvent('Narno_Mailjet_email_after_send', array(
                 'mail'     => $mail,
