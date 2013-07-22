@@ -219,8 +219,8 @@ class Narno_Mailjet_Model_Observer
             return $this;
         }
         
-        $date = Mage::app()->getLocale()->date(null, null, null, false);
-        Mage::log('run at ' . $date->toString('yyyy-MM-dd HH:mm:ss'), Zend_Log::INFO, 'cron.mailjet.log');
+        //$date = Mage::app()->getLocale()->date(null, null, null, false);
+        //Mage::log('run at ' . $date->toString('yyyy-MM-dd HH:mm:ss'), Zend_Log::INFO, 'cron.mailjet.log');
 
         return $this;
     }
