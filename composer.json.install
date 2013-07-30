@@ -1,0 +1,19 @@
+{
+    "require": {
+        "magento-hackathon/magento-composer-installer":"dev-master",
+        "narno/magento_narno_mailjet": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/magento-hackathon/magento-composer-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Narno/Magento_Narno_Mailjet.git"
+        }
+    ],
+    "extra":{
+        "magento-root-dir": "your-magento-root/"
+    }
+}
