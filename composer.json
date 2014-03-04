@@ -1,21 +1,31 @@
 {
   "name": "narno/magento-mailjet",
+  "description": "Magento module that integrate Mailjet services with your e-commerce website.",
   "type": "magento-module",
-  "license":"OSL-3.0",
-  "description":"Magento module that integrate Mailjet services with your e-commerce website.",
-  "authors":[
+  "license": "OSL-3.0",
+  "keywords": [
+    "magento", "mailjet", "email", "newsletter", "narno"
+  ],
+  "homepage": "https://github.com/Narno/Magento_Narno_Mailjet",
+  "authors": [
     {
       "name":"Arnaud Ligny",
-      "email":"arnaud@ligny.org"
+      "email":"arnaud@ligny.org",
+      "homepage": "http://narno.org"
     }
   ],
+  "support": {
+    "issues": "https://github.com/Narno/Magento_Narno_Mailjet/issues",
+    "source": "https://github.com/Narno/Magento_Narno_Mailjet"
+  },
   "require": {
     "magento-hackathon/magento-composer-installer": "*"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/Narno/Magento_Narno_Mailjet"
-    }
-  ]
+  "extra": {
+    "map": [
+      ["src/app/etc/modules/Narno_Mailjet.xml", "app/etc/modules/Narno_Mailjet.xml"],
+      ["src/app/code/community/Narno/Mailjet/", "app/code/community/Narno/Mailjet/"],
+      ["src/app/locale/fr_FR/Narno_Mailjet.csv", "app/locale/fr_FR/Narno_Mailjet.csv"]
+    ]
+  }
 }
