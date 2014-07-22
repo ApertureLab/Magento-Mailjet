@@ -18,7 +18,7 @@ class Narno_Mailjet_EventController
                 ->setWebsiteId($websiteId);
             $data = json_decode($this->getRequest()->getRawBody());
 
-            // manage unsubscribe event
+            // @todo manage unsubscribe event
             if ($data->event == 'unsub') {
                 if ($contact = $subscriber->loadByEmail($data->email)) {
                     echo "subscriber exists";
