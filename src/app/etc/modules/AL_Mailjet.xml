@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AL_Mailjet>
+            <active>true</active>
+            <codePool>community</codePool>
+        </AL_Mailjet>
+    </modules>
+</config>

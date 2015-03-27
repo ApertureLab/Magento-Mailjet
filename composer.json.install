@@ -1,7 +1,7 @@
 {
   "require": {
     "magento-hackathon/magento-composer-installer": "dev-master",
-    "narno/magento-mailjet": "dev-master"
+    "aperturelab/magento-mailjet": "dev-master"
   },
   "repositories": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "type": "vcs",
-      "url": "https://github.com/Narno/Magento_Narno_Mailjet.git"
+      "url": "https://github.com/ApertureLab/Magento-Mailjet.git"
     }
   ],
   "extra":{
