@@ -5,8 +5,8 @@
   },
   "repositories": [
     {
-      "type": "vcs",
-      "url": "https://github.com/magento-hackathon/magento-composer-installer"
+      "type": "composer",
+      "url": "http://packages.firegento.com"
     },
     {
       "type": "vcs",
@@ -14,6 +14,7 @@
     }
   ],
   "extra":{
-    "magento-root-dir": "your-magento-root/"
+    "magento-root-dir": "magento-1.9/",
+    "magento-deploystrategy": "copy"
   }
 }
