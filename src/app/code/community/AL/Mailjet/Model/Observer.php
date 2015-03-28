@@ -57,7 +57,7 @@ class AL_Mailjet_Model_Observer
     {
         Mage::helper('al_mailjet')->logDebug('Observer: ' . $observer->getEvent()->getName()); // debug
         
-        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
+        $config = Mage::getSingleton('al_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
 
         if ($config->isApiEnabled() === false) {
             return $this;
@@ -90,7 +90,7 @@ class AL_Mailjet_Model_Observer
     {
         Mage::helper('al_mailjet')->logDebug('Observer: ' . $observer->getEvent()->getName()); // debug
 
-        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
+        $config = Mage::getSingleton('al_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
 
         if ($config->isApiEnabled() === false) {
             return $this;
@@ -139,7 +139,7 @@ class AL_Mailjet_Model_Observer
     {
         Mage::helper('al_mailjet')->logDebug('Observer: ' . $observer->getEvent()->getName()); // debug
         
-        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
+        $config = Mage::getSingleton('al_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
 
         if ($config->isApiEnabled() === false) {
             return $this;

@@ -22,7 +22,7 @@ class AL_Mailjet_Model_Api_Lists
      */
     public function subscribe($email, $list)
     {
-        Mage::helper('narno_mailjet')->logDebug('Subscribe: ' . $email); // debug
+        Mage::helper('al_mailjet')->logDebug('Subscribe: ' . $email); // debug
         try {
             $params = array(
                 'contact' => $email,

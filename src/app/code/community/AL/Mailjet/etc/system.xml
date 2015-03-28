@@ -9,7 +9,7 @@
 -->
 <config>
     <sections>
-        <mailjet translate="label" module="narno_mailjet">
+        <mailjet translate="label" module="al_mailjet">
             <label>Mailjet</label>
             <tab>customer</tab>
             <sort_order>999</sort_order>

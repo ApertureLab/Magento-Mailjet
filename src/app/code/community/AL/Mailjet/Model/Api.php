@@ -22,7 +22,7 @@ class AL_Mailjet_Model_Api extends Varien_Object
      */
     protected function _getApi($apikey='', $secretkey='', $force=false)
     {
-        $config = Mage::getSingleton('narno_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
+        $config = Mage::getSingleton('al_mailjet/config'); /* @var $config AL_Mailjet_Model_Config */
 
         if (empty($apikey) || empty($secretkey)) {
             $apikey    = $config->getAuthConfig('apikey');

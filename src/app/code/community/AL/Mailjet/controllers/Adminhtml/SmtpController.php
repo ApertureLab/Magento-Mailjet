@@ -44,8 +44,8 @@ class AL_Mailjet_Adminhtml_SmtpController
         if (!$mailTemplate->getSentSuccess()) {
             $result = array(
                 'status'  => 'error',
-                'message' => Mage::helper('narno_mailjet')->__('Test fail!')
-                    . ' (' . Mage::helper('narno_mailjet')->__('check exception.log file')
+                'message' => Mage::helper('al_mailjet')->__('Test fail!')
+                    . ' (' . Mage::helper('al_mailjet')->__('check exception.log file')
                     . ')',
             );
         }
