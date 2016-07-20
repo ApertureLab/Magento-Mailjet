@@ -1,32 +1,21 @@
-Description
------------
-
-_Magento-Mailjet_ is a Magento module that integrate Mailjet services with your e-commerce website.
+Magento 1 module that connects Mailjet services with your e-commerce website.
 
 Mailjet documentation: http://www.mailjet.com/docs
 
-### Features
+## Features
 * Uses the Mailjet STMP instead of the local SMTP relay
 * Uses the Mailjet API to synchronyze Magento newsletter subscribers with a Mailjet contacts list
 
-**_WIP_**
-
-
-Screenshot
-----------
+## Screenshot
 
 ![Magento-Mailjet Configuration](https://raw.github.com/ApertureLab/Magento-Mailjet/master/doc/screenshots/Magento-Mailjet_Admin.png "Magento-Mailjet Configuration")
 
-
-Dependencies
-------------
+## Dependencies
 
 * Mailjet account: http://www.mailjet.com
 * ZendService_Mailjet library: https://github.com/Narno/ZendService_Mailjet/tree/zf1.
 
-
-License
-----------
+## License
 
 Released under the terms of the [Open Software License 3.0](http://opensource.org/licenses/OSL-3.0).
 
