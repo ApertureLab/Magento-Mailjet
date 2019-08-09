@@ -1,6 +1,6 @@
-Magento 1 module that connects Mailjet services with your e-commerce website.
+# Magento-Mailjet
 
-Mailjet documentation: http://www.mailjet.com/docs
+> Magento 1 module that connects [Mailjet services](https://www.mailjet.com/docs) with your e-commerce website.
 
 ## Features
 * Uses the Mailjet STMP instead of the local SMTP relay
@@ -8,7 +8,7 @@ Mailjet documentation: http://www.mailjet.com/docs
 
 ## Screenshot
 
-![Magento-Mailjet Configuration](https://raw.github.com/ApertureLab/Magento-Mailjet/master/doc/screenshots/Magento-Mailjet_Admin.png "Magento-Mailjet Configuration")
+![Magento-Mailjet Configuration](doc/screenshots/Magento-Mailjet_Admin.png "Magento-Mailjet Configuration")
 
 ## Dependencies
 
