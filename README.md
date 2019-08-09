@@ -12,8 +12,8 @@
 
 ## Dependencies
 
-* Mailjet account: http://www.mailjet.com
-* ZendService_Mailjet library: https://github.com/Narno/ZendService_Mailjet/tree/zf1.
+* Mailjet account: https://www.mailjet.com
+* Mailjet-API library: https://github.com/Narno/Mailjet-API/tree/zf1
 
 ## License
 
